@@ -1,11 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <title>İbrahim Doruk</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İbrahim Eren Doruk</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>İbrahim Doruk</h1>
-  <p>Mechanical Engineer</p>
-  <p>Bu benim ilk web sitem 🚀</p>
+
+  <header class="navbar">
+    <div class="brand">
+      <img src="images/logo.png" alt="Logo">
+      <span>İbrahim Eren Doruk</span>
+    </div>
+
+    <nav>
+      <a href="#hakkimda">Hakkımda</a>
+      <a href="#projeler">Projeler</a>
+      <a href="#hizmetler">Hizmetler</a>
+      <a href="#beceriler">Beceriler</a>
+      <a href="#sertifikalar">Sertifikalar</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+
+    <a class="contact-btn" href="#iletisim">İletişime Geç</a>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>İbrahim Eren<br>Doruk.</h1>
+      <p>
+        Eskişehir Osmangazi Üniversitesi Makine Mühendisliği mezunu.
+        CAD/CAM tasarımı, CNC işleme, tolerans analizi, malzeme bilgisi
+        ve kalite kontrol konularında yetkin.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#projeler" class="primary-btn">Projelerimi Gör ↗</a>
+        <a href="#" class="circle-btn">in</a>
+      </div>
+
+      <div class="stats">
+        <div><strong>10+</strong><span>Tamamlanan Proje</span></div>
+        <div><strong>2+</strong><span>Yıllık Deneyim</span></div>
+        <div><strong>3</strong><span>Staj & İş</span></div>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="images/profil.jpg" alt="İbrahim Eren Doruk">
+      <div class="status">● Müsait</div>
+    </div>
+  </section>
+
+  <section id="hakkimda" class="about">
+    <span class="section-label">HAKKIMDA</span>
+    <h2>Havacılık ve otomotiv endüstrisine ilgi duyan, imalat teknolojileri alanında kendini geliştiren bir Makine Mühendisiyim.</h2>
+    <p>
+      Eskişehir Osmangazi Üniversitesi Makine Mühendisliği bölümünden 2024 yılında mezun oldum.
+      CAD/CAM tasarımı, CNC işleme, tolerans analizi, malzeme bilgisi ve kalite kontrol konularında
+      yetkinlik sahibiyim. Aynı zamanda fason sac metal tasarımı yapıyor, 3D yazıcı ile prototipler oluşturuyorum.
+    </p>
+  </section>
+
+  <section id="projeler" class="projects">
+    <span class="section-label">TÜM PROJELER</span>
+    <h2>Projeler ve Araştırmalar</h2>
+
+    <div class="cards">
+      <div class="card">
+        <img src="images/proje1.jpg" alt="">
+        <h3>Seçici Lazer Ergitme (SLM)</h3>
+        <p>AlSi 316L paslanmaz çeliğin yüzey topolojisi ve mekanik özellikleri hakkında çalışma.</p>
+      </div>
+
+      <div class="card">
+        <img src="images/proje2.jpg" alt="">
+        <h3>Termal Bariyer Kaplama</h3>
+        <p>Kaplama teknolojileri ve faydaları hakkında detaylı araştırma ve analiz çalışması.</p>
+      </div>
+
+      <div class="card">
+        <img src="images/proje3.jpg" alt="">
+        <h3>Rüzgar Enerjisi Potansiyeli</h3>
+        <p>Türkiye'nin rüzgar enerjisi potansiyeli hakkında kapsamlı rapor ve analiz.</p>
+      </div>
+
+      <div class="card">
+        <img src="images/proje4.jpg" alt="">
+        <h3>Sac Metal Tasarım Projeleri</h3>
+        <p>Endüstriyel ürünler için CAD modelleme, katlama analizi ve üretim hazırlığı.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="hizmetler" class="services">
+    <span class="section-label">HİZMETLERİM</span>
+    <h2>Neler Yapıyorum?</h2>
+
+    <div class="service-grid">
+      <div class="service light">
+        <h3>Sac Metal Tasarımı</h3>
+        <p>CAD tasarımı, teknik resim, büküm ve üretim hazırlığı.</p>
+      </div>
+
+      <div class="service">
+        <h3>3D Yazıcı Siparişleri</h3>
+        <p>PLA, ABS, PETG gibi malzemelerle prototip ve fonksiyonel parça üretimi.</p>
+      </div>
+
+      <div class="service">
+        <h3>Prototipleme Hizmetleri</h3>
+        <p>Fikirden fiziksel ürüne kadar modelleme, baskı ve test süreci.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="beceriler" class="skills">
+    <span class="section-label">TEKNİK YETKİNLİKLER</span>
+    <h2>Teknik Yetkinlikler</h2>
+
+    <div class="service-grid">
+      <div class="service light">
+        <h3>CAD & CAM</h3>
+        <p>SolidWorks, Autodesk Fusion, Siemens NX, teknik resim ve CAM programlama.</p>
+      </div>
+
+      <div class="service">
+        <h3>İmalat & Kalite</h3>
+        <p>CNC freze, lazer kesim, abkant pres, kaynaklı imalat ve kalite kontrol.</p>
+      </div>
+
+      <div class="service">
+        <h3>Malzeme & Analiz</h3>
+        <p>Malzeme bilgisi, termal analiz, tolerans analizi ve üretim optimizasyonu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sertifikalar" class="certificates">
+    <span class="section-label">SERTİFİKALAR</span>
+    <h2>Kurs ve Sertifikalar</h2>
+
+    <div class="service-grid">
+      <div class="service light">
+        <h3>TEI TUSAŞ Motor Sanayii A.Ş. Eğitimi</h3>
+        <p>Türbin motoru tasarımı, termal analiz, imalat ve kalite kontrol eğitimi.</p>
+      </div>
+
+      <div class="service">
+        <h3>Yalın Üretim</h3>
+        <p>Üretim süreçlerinde verimlilik ve israf azaltma teknikleri.</p>
+      </div>
+
+      <div class="service">
+        <h3>Sac Metal Tasarımı</h3>
+        <p>Sac metal parçaların tasarımı, katlama analizi ve üretim hazırlığı.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="iletisim" class="contact">
+    <h2>İletişime Geç</h2>
+    <p>Benimle proje, tasarım veya üretim çalışmaları için iletişime geçebilirsiniz.</p>
+    <a href="mailto:mailadresin@gmail.com" class="primary-btn">Mail Gönder</a>
+  </section>
+
+  <script src="script.js"></script>
 </body>
 </html>
