@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İbrahim Eren Doruk | Portfolyo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">İbrahim Eren Doruk</div>
+        <ul class="nav-links">
+            <li><a href="#">Hakkımda</a></li>
+            <li><a href="#">Projeler</a></li>
+            <li><a href="#">Hizmetler</a></li>
+            <li><a href="#">Beceriler</a></li>
+            <li><a href="#">Deneyim</a></li>
+        </ul>
+        <button class="contact-btn">İletişime Geç</button>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-text">
+            <h1>İbrahim Eren Doruk.</h1>
+            <p>Eskişehir Osmangazi Üniversitesi Makine Mühendisi mezunu. CAD/CAM tasarımı, CNC işleme ve üretim süreçlerinde uzman.</p>
+            <div class="stats">
+                <div class="stat-item"><span>10+</span><p>Proje</p></div>
+                <div class="stat-item"><span>2+</span><p>Deneyim</p></div>
+                <div class="stat-item"><span>3</span><p>Staj</p></div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="mezuniyet_fotografi.jpg" alt="Mezuniyet">
+        </div>
+    </header>
+
+    <section class="services">
+        <h2>Neler Yapıyorum?</h2>
+        <div class="grid">
+            <div class="card white-card">
+                <h3>Sac Metal Tasarımı</h3>
+                <p>Profesyonel CAD tasarımı ve üretim hazırlığı.</p>
+            </div>
+            <div class="card dark-card">
+                <h3>3D Yazıcı Siparişleri</h3>
+                <p>FDM teknolojisi ile fonksiyonel parça üretimi.</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
