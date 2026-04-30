@@ -5,6 +5,10 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: #0c0c0c;
   color: #f5f5f5;
@@ -20,7 +24,7 @@ body {
   border-bottom: 1px solid #1e1e1e;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 100;
 }
 
 .brand {
@@ -38,7 +42,7 @@ body {
 
 nav {
   display: flex;
-  gap: 34px;
+  gap: 28px;
 }
 
 nav a {
@@ -46,6 +50,11 @@ nav a {
   text-decoration: none;
   font-weight: 600;
   font-size: 14px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: white;
 }
 
 .contact-btn,
@@ -56,6 +65,29 @@ nav a {
   border-radius: 999px;
   text-decoration: none;
   font-weight: 700;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.contact-btn:hover,
+.primary-btn:hover {
+  transform: translateY(-2px);
+  background: #e5e7eb;
+}
+
+.secondary-btn {
+  color: white;
+  border: 1px solid #334155;
+  padding: 14px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.secondary-btn:hover {
+  background: #1f2937;
 }
 
 .hero {
@@ -71,6 +103,7 @@ nav a {
   font-size: 64px;
   line-height: 0.95;
   margin-bottom: 28px;
+  letter-spacing: -2px;
 }
 
 .hero p,
@@ -103,6 +136,7 @@ nav a {
   place-items: center;
   color: white;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .stats {
@@ -144,8 +178,13 @@ nav a {
   font-weight: bold;
 }
 
-.status::first-letter {
+.status {
   color: #22c55e;
+}
+
+.status::after {
+  content: " Müsait";
+  color: white;
 }
 
 section {
@@ -165,11 +204,13 @@ section {
 .services h2,
 .skills h2,
 .certificates h2,
+.resume h2,
 .contact h2 {
   font-size: 52px;
   margin: 26px 0 32px;
   max-width: 950px;
   line-height: 1.05;
+  letter-spacing: -1px;
 }
 
 .about p {
@@ -187,6 +228,14 @@ section {
   background: #1c1c1c;
   border-radius: 14px;
   overflow: hidden;
+  transition: 0.3s;
+}
+
+.card:hover,
+.service:hover,
+.resume-column:hover {
+  transform: translateY(-5px);
+  border-color: #3f3f46;
 }
 
 .card img {
@@ -227,6 +276,7 @@ section {
   border: 1px solid #2a2a2a;
   border-radius: 16px;
   padding: 58px 32px;
+  transition: 0.3s;
 }
 
 .service.light {
@@ -236,6 +286,120 @@ section {
 
 .service.light p {
   color: #4b5563;
+}
+
+.service ul {
+  margin-top: 24px;
+  padding-left: 18px;
+  color: #9ca3af;
+  line-height: 1.8;
+}
+
+.service.light ul {
+  color: #4b5563;
+}
+
+.resume {
+  background: #0c0c0c;
+}
+
+.resume-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 32px;
+  margin-top: 50px;
+}
+
+.resume-column {
+  background: #171717;
+  border: 1px solid #2a2a2a;
+  border-radius: 18px;
+  padding: 36px;
+  transition: 0.3s;
+}
+
+.resume-column h3 {
+  font-size: 26px;
+  margin-bottom: 28px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 24px;
+  padding-bottom: 34px;
+  border-left: 1px solid #333;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 4px;
+  width: 13px;
+  height: 13px;
+  background: white;
+  border-radius: 50%;
+}
+
+.date {
+  display: inline-block;
+  color: #9ca3af;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.timeline-item h4 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.company {
+  color: #9ca3af;
+  margin-bottom: 14px;
+}
+
+.timeline-item ul {
+  color: #9ca3af;
+  line-height: 1.7;
+  padding-left: 18px;
+}
+
+.mt {
+  margin-top: 40px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill-tags span {
+  background: #2a2a2a;
+  color: #d1d5db;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+}
+
+.cv-download {
+  background: #f5f5f5;
+  color: #111827;
+  padding: 28px;
+  border-radius: 16px;
+}
+
+.cv-download p {
+  color: #4b5563;
+  margin-bottom: 22px;
+}
+
+.certificates .service-grid {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .contact {
@@ -251,6 +415,34 @@ section {
   margin-bottom: 30px;
 }
 
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+footer {
+  padding: 28px;
+  text-align: center;
+  color: #9ca3af;
+  border-top: 1px solid #1e1e1e;
+  background: #090909;
+}
+
+@media (max-width: 1100px) {
+  nav {
+    gap: 18px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .certificates .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 900px) {
   .navbar {
     padding: 0 22px;
@@ -260,17 +452,34 @@ section {
     display: none;
   }
 
+  .contact-btn {
+    padding: 11px 16px;
+    font-size: 13px;
+  }
+
   .hero {
     grid-template-columns: 1fr;
     padding: 40px 24px;
+    gap: 40px;
   }
 
   .hero h1 {
     font-size: 48px;
   }
 
+  .hero-image img {
+    height: 460px;
+  }
+
+  .stats {
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
   .cards,
-  .service-grid {
+  .service-grid,
+  .certificates .service-grid,
+  .resume-layout {
     grid-template-columns: 1fr;
   }
 
@@ -283,7 +492,17 @@ section {
   .services h2,
   .skills h2,
   .certificates h2,
+  .resume h2,
   .contact h2 {
     font-size: 38px;
+  }
+
+  .resume-column {
+    padding: 26px;
+  }
+
+  .contact-links {
+    flex-direction: column;
+    align-items: center;
   }
 }
