@@ -62,6 +62,7 @@ body {
 nav {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 nav a {
@@ -74,6 +75,43 @@ nav a {
 
 nav a:hover {
   color: white;
+}
+
+.right-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lang-switch,
+.mobile-lang {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mobile-lang {
+  display: none;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.lang-btn {
+  background: rgba(255,255,255,0.08);
+  color: #d1d5db;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 7px 9px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+  transition: 0.25s;
+}
+
+.lang-btn:hover,
+.lang-btn.active {
+  background: white;
+  color: #111827;
 }
 
 .contact-btn,
@@ -244,7 +282,6 @@ section {
   max-width: 760px;
 }
 
-/* PROJE GALERİSİ */
 .portfolio-projects {
   background:
     radial-gradient(circle at 10% 20%, rgba(255,255,255,0.08), transparent 24%),
@@ -336,7 +373,6 @@ section {
   transform: translateY(0);
 }
 
-/* ARAŞTIRMALAR */
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -411,7 +447,6 @@ section {
   color: #4b5563;
 }
 
-/* ÖZGEÇMİŞ */
 .resume {
   position: relative;
   background:
@@ -582,7 +617,6 @@ footer {
   background: rgba(9,9,9,0.7);
 }
 
-/* ANİMASYON */
 .reveal {
   opacity: 0;
   transform: translateY(45px);
@@ -603,7 +637,6 @@ footer {
   }
 }
 
-/* TABLET */
 @media (max-width: 1200px) {
   nav {
     gap: 13px;
@@ -618,10 +651,21 @@ footer {
   }
 }
 
-/* MOBİL MENÜ */
 @media (max-width: 1100px) {
   .menu-btn {
     display: block;
+  }
+
+  .right-actions {
+    gap: 8px;
+  }
+
+  .lang-switch {
+    display: none;
+  }
+
+  .mobile-lang {
+    display: flex;
   }
 
   nav {
@@ -637,6 +681,7 @@ footer {
     border-radius: 22px;
     padding: 22px;
     flex-direction: column;
+    align-items: flex-start;
     gap: 18px;
   }
 
@@ -666,7 +711,6 @@ footer {
   }
 }
 
-/* TELEFON */
 @media (max-width: 900px) {
   .navbar {
     padding: 0 18px;
@@ -769,7 +813,6 @@ footer {
   }
 }
 
-/* KÜÇÜK TELEFON */
 @media (max-width: 480px) {
   .hero h1 {
     font-size: 40px;
