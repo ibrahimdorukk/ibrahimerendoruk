@@ -48,6 +48,17 @@ body {
   border-radius: 12px;
 }
 
+.menu-btn {
+  display: none;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 12px;
+  padding: 8px 13px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
 nav {
   display: flex;
   gap: 20px;
@@ -592,7 +603,7 @@ footer {
   }
 }
 
-/* MOBİL */
+/* TABLET */
 @media (max-width: 1200px) {
   nav {
     gap: 13px;
@@ -607,7 +618,36 @@ footer {
   }
 }
 
+/* MOBİL MENÜ */
 @media (max-width: 1100px) {
+  .menu-btn {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 76px;
+    left: 20px;
+    right: 20px;
+    background: rgba(15,15,15,0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 22px;
+    padding: 22px;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  nav a {
+    font-size: 16px;
+  }
+
   .project-gallery {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -624,30 +664,44 @@ footer {
   .certificates-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  nav {
-    display: none;
-  }
 }
 
+/* TELEFON */
 @media (max-width: 900px) {
   .navbar {
-    padding: 0 22px;
+    padding: 0 18px;
+  }
+
+  .brand span {
+    font-size: 14px;
+  }
+
+  .brand img {
+    width: 36px;
+    height: 36px;
   }
 
   .contact-btn {
-    padding: 11px 16px;
-    font-size: 13px;
+    display: none;
   }
 
   .hero {
     grid-template-columns: 1fr;
-    padding: 40px 24px;
+    padding: 40px 22px;
     gap: 40px;
   }
 
   .hero h1 {
     font-size: 48px;
+  }
+
+  .hero p,
+  .about p,
+  .card p,
+  .service p,
+  .contact p,
+  .section-desc {
+    font-size: 16px;
   }
 
   .hero-image img {
@@ -677,8 +731,19 @@ footer {
     grid-row: span 1;
   }
 
+  .project-overlay {
+    opacity: 1;
+    transform: translateY(0);
+    background:
+      linear-gradient(to top, rgba(0,0,0,0.88), rgba(0,0,0,0.18), rgba(0,0,0,0.02));
+  }
+
+  .project-overlay h3 {
+    font-size: 23px;
+  }
+
   section {
-    padding: 70px 24px;
+    padding: 70px 22px;
   }
 
   .about h2,
@@ -701,5 +766,28 @@ footer {
   .contact-links {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+/* KÜÇÜK TELEFON */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .hero-buttons {
+    flex-wrap: wrap;
+  }
+
+  .stats strong {
+    font-size: 28px;
+  }
+
+  .project-gallery {
+    grid-auto-rows: 280px;
+  }
+
+  .hero-image img {
+    height: 380px;
   }
 }
