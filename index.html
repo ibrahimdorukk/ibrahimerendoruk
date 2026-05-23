@@ -5,46 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>İbrahim Eren Doruk | Mechanical Engineer Portfolio</title>
-
-  <meta
-    name="description"
-    content="İbrahim Eren Doruk - Makine Mühendisi. CAD/CAM tasarımı, CNC işleme, sac metal tasarımı, 3D baskı, kalite kontrol ve üretim teknolojileri üzerine profesyonel portfolyo sitesi."
-  />
-
-  <meta
-    name="keywords"
-    content="İbrahim Eren Doruk, Mechanical Engineer, Makine Mühendisi, CAD CAM, SolidWorks, Siemens NX, CNC, 3D Printing, Sac Metal Tasarımı, Production Engineer"
-  />
-
+  <meta name="description" content="İbrahim Eren Doruk - Makine Mühendisi. CAD/CAM tasarımı, CNC işleme, sac metal tasarımı, 3D baskı, kalite kontrol ve üretim teknolojileri üzerine profesyonel portfolyo sitesi." />
+  <meta name="keywords" content="İbrahim Eren Doruk, Mechanical Engineer, Makine Mühendisi, CAD CAM, SolidWorks, Siemens NX, CNC, 3D Printing, Sac Metal Tasarımı, Production Engineer" />
   <meta name="author" content="İbrahim Eren Doruk" />
-
   <meta name="robots" content="index, follow" />
 
   <meta property="og:title" content="İbrahim Eren Doruk | Mechanical Engineer Portfolio" />
-
-  <meta
-    property="og:description"
-    content="CAD/CAM, CNC işleme, sac metal tasarımı, 3D baskı ve üretim teknolojileri üzerine profesyonel mühendislik portfolyosu."
-  />
-
+  <meta property="og:description" content="CAD/CAM, CNC işleme, sac metal tasarımı, 3D baskı ve üretim teknolojileri üzerine profesyonel mühendislik portfolyosu." />
   <meta property="og:type" content="website" />
-
-  <meta property="og:image" content="images/profil.jpg" />
+  <meta property="og:url" content="https://ibrahimerendoruk.vercel.app/" />
+  <meta property="og:image" content="https://ibrahimerendoruk.vercel.app/images/profil.jpg" />
 
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="İbrahim Eren Doruk | Mechanical Engineer Portfolio" />
+  <meta name="twitter:description" content="Mechanical Engineering portfolio including CAD/CAM, CNC machining, prototyping and industrial design." />
+  <meta name="twitter:image" content="https://ibrahimerendoruk.vercel.app/images/profil.jpg" />
 
-  <meta
-    name="twitter:title"
-    content="İbrahim Eren Doruk | Mechanical Engineer Portfolio"
-  />
-
-  <meta
-    name="twitter:description"
-    content="Mechanical Engineering portfolio including CAD/CAM, CNC machining, prototyping and industrial design."
-  />
-
-  <meta name="twitter:image" content="images/profil.jpg" />
-
+  <link rel="canonical" href="https://ibrahimerendoruk.vercel.app/" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -52,232 +29,333 @@
 
 <header class="navbar">
   <div class="brand">
-    <img src="images/logo.png" alt="Logo">
+    <img src="images/logo.png" alt="İbrahim Eren Doruk logo">
     <span>İbrahim Eren Doruk</span>
   </div>
 
   <button class="menu-btn" id="menuBtn">☰</button>
 
   <nav id="mobileMenu">
-    <a href="#hakkimda">Hakkımda</a>
-    <a href="#projeler">Projeler</a>
-    <a href="#arastirmalar">Araştırmalar</a>
-    <a href="#hizmetler">Hizmetler</a>
-    <a href="#beceriler">Beceriler</a>
-    <a href="#ozgecmis">Özgeçmiş</a>
-    <a href="#sertifikalar">Sertifikalar</a>
-    <a href="#iletisim">İletişim</a>
+    <a href="#hakkimda" data-i18n="navAbout">Hakkımda</a>
+    <a href="#projeler" data-i18n="navProjects">Projeler</a>
+    <a href="#arastirmalar" data-i18n="navResearch">Araştırmalar</a>
+    <a href="#hizmetler" data-i18n="navServices">Hizmetler</a>
+    <a href="#beceriler" data-i18n="navSkills">Beceriler</a>
+    <a href="#ozgecmis" data-i18n="navResume">Özgeçmiş</a>
+    <a href="#sertifikalar" data-i18n="navCertificates">Sertifikalar</a>
+    <a href="#iletisim" data-i18n="navContact">İletişim</a>
+
+    <div class="mobile-lang">
+      <button class="lang-btn" data-lang="tr">TR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="de">DE</button>
+    </div>
   </nav>
 
-  <a class="contact-btn" href="#iletisim">İletişime Geç</a>
+  <div class="right-actions">
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="tr">TR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="de">DE</button>
+    </div>
+
+    <a class="contact-btn" href="#iletisim" data-i18n="contactButton">İletişime Geç</a>
+  </div>
 </header>
 
 <section class="hero reveal">
   <div class="hero-text">
-    <h1>
-      İbrahim Eren<br>
-      Doruk.
-    </h1>
+    <h1 data-i18n="heroTitle">İbrahim Eren<br>Doruk.</h1>
 
-    <p>
+    <p data-i18n="heroText">
       Eskişehir Osmangazi Üniversitesi Makine Mühendisliği mezunu.
-      CAD/CAM tasarımı, CNC işleme, tolerans analizi,
-      malzeme bilgisi ve kalite kontrol konularında yetkin.
+      CAD/CAM tasarımı, CNC işleme, tolerans analizi, malzeme bilgisi
+      ve kalite kontrol konularında yetkin.
     </p>
 
     <div class="hero-buttons">
-      <a href="#projeler" class="primary-btn">Projelerimi Gör ↗</a>
-
-      <a
-        href="https://www.linkedin.com/in/ibrahimerendoruk/"
-        target="_blank"
-        class="circle-btn"
-      >
-        in
-      </a>
+      <a href="#projeler" class="primary-btn" data-i18n="heroProjectButton">Projelerimi Gör ↗</a>
+      <a href="https://www.linkedin.com/in/ibrahimerendoruk/" target="_blank" class="circle-btn">in</a>
     </div>
 
     <div class="stats">
       <div>
         <strong>10+</strong>
-        <span>Tamamlanan Proje</span>
+        <span data-i18n="statProjects">Tamamlanan Proje</span>
       </div>
 
       <div>
         <strong>2+</strong>
-        <span>Yıllık Deneyim</span>
+        <span data-i18n="statExperience">Yıllık Deneyim</span>
       </div>
 
       <div>
         <strong>3</strong>
-        <span>Staj & İş</span>
+        <span data-i18n="statInternship">Staj & İş</span>
       </div>
     </div>
   </div>
 
   <div class="hero-image">
-    <img src="images/profil.jpg" alt="İbrahim Eren Doruk">
-    <div class="status">● Müsait</div>
+    <img src="images/profil.jpg" alt="İbrahim Eren Doruk profil fotoğrafı">
+    <div class="status" data-i18n="status">● Müsait</div>
   </div>
 </section>
 
 <section id="hakkimda" class="about reveal">
-  <span class="section-label">HAKKIMDA</span>
+  <span class="section-label" data-i18n="aboutLabel">HAKKIMDA</span>
 
-  <h2>
-    Havacılık ve otomotiv endüstrisine ilgi duyan,
-    imalat teknolojileri alanında kendini geliştiren
-    bir Makine Mühendisiyim.
+  <h2 data-i18n="aboutTitle">
+    Havacılık ve otomotiv endüstrisine ilgi duyan, imalat teknolojileri alanında kendini geliştiren bir Makine Mühendisiyim.
   </h2>
 
-  <p>
-    Eskişehir Osmangazi Üniversitesi Makine Mühendisliği bölümünden
-    2024 yılında mezun oldum. CAD/CAM tasarımı, CNC işleme,
-    tolerans analizi, malzeme bilgisi ve kalite kontrol konularında
-    yetkinlik sahibiyim.
+  <p data-i18n="aboutText">
+    Eskişehir Osmangazi Üniversitesi Makine Mühendisliği bölümünden 2024 yılında mezun oldum.
+    CAD/CAM tasarımı, CNC işleme, tolerans analizi, malzeme bilgisi ve kalite kontrol konularında
+    yetkinlik sahibiyim. Endüstrideki teknolojik yenilikleri yakından takip ederek, mühendislik
+    becerilerimi sürekli geliştiriyor ve yenilikçi çözümler üretmeye odaklanıyorum.
   </p>
 </section>
 
 <section id="projeler" class="portfolio-projects reveal">
+  <span class="section-label" data-i18n="projectsLabel">PROJELER</span>
+  <h2 data-i18n="projectsTitle">Tasarım ve Render Çalışmaları</h2>
 
-  <span class="section-label">PROJELER</span>
-
-  <h2>Tasarım ve Render Çalışmaları</h2>
-
-  <p class="section-desc">
-    CAD modelleme, sac metal tasarımı,
-    prototipleme ve 3D render çalışmalarından oluşan proje seçkisi.
+  <p class="section-desc" data-i18n="projectsDesc">
+    CAD modelleme, sac metal tasarımı, prototipleme ve 3D render çalışmalarından oluşan proje seçkisi.
   </p>
 
   <div class="project-gallery">
-
     <div class="project-showcase large">
-      <img src="images/render1.jpg" alt="Sac Metal Tasarımı">
-
+      <img src="images/render1.jpg" alt="Sac metal kasa tasarımı render">
       <div class="project-overlay">
-        <span>SolidWorks / Sac Metal</span>
-
-        <h3>Sac Metal Kasa Tasarımı</h3>
-
-        <p>
-          Üretime uygun büküm mantığıyla hazırlanmış modern
-          sac metal ürün tasarımı.
-        </p>
+        <span data-i18n="project1Tag">SolidWorks / Sac Metal / Render</span>
+        <h3 data-i18n="project1Title">Sac Metal Kasa Tasarımı</h3>
+        <p data-i18n="project1Text">Üretime uygun büküm mantığıyla hazırlanmış modern sac metal ürün tasarımı.</p>
       </div>
     </div>
 
     <div class="project-showcase">
-      <img src="images/render2.jpg" alt="3D Baskı">
-
+      <img src="images/render2.jpg" alt="3D baskı prototip render">
       <div class="project-overlay">
-        <span>Fusion 360 / 3D Baskı</span>
-
-        <h3>3D Baskı Prototip</h3>
-
-        <p>
-          Fonksiyonel kullanım için hazırlanmış prototip parça tasarımı.
-        </p>
+        <span data-i18n="project2Tag">Fusion 360 / 3D Baskı</span>
+        <h3 data-i18n="project2Title">3D Baskı Prototip</h3>
+        <p data-i18n="project2Text">Fonksiyonel kullanım için hazırlanmış prototip parça tasarımı.</p>
       </div>
     </div>
 
     <div class="project-showcase">
-      <img src="images/render3.jpg" alt="CAD Tasarımı">
-
+      <img src="images/render3.jpg" alt="Makine parçası CAD tasarımı">
       <div class="project-overlay">
-        <span>Siemens NX / CAD</span>
-
-        <h3>Makine Parçası Tasarımı</h3>
-
-        <p>
-          Teknik ölçülere uygun mühendislik parçası modelleme çalışması.
-        </p>
+        <span data-i18n="project3Tag">Siemens NX / CAD</span>
+        <h3 data-i18n="project3Title">Makine Parçası Tasarımı</h3>
+        <p data-i18n="project3Text">Teknik ölçülere uygun mühendislik parçası modelleme çalışması.</p>
       </div>
     </div>
 
+    <div class="project-showcase">
+      <img src="images/render4.jpg" alt="Endüstriyel ürün render">
+      <div class="project-overlay">
+        <span data-i18n="project4Tag">CAD / Render</span>
+        <h3 data-i18n="project4Title">Endüstriyel Ürün Render</h3>
+        <p data-i18n="project4Text">Sunum ve katalog kullanımına uygun ürün görselleştirme çalışması.</p>
+      </div>
+    </div>
+
+    <div class="project-showcase">
+      <img src="images/render5.jpg" alt="Montaj tasarımı">
+      <div class="project-overlay">
+        <span data-i18n="project5Tag">Montaj / Teknik Tasarım</span>
+        <h3 data-i18n="project5Title">Montaj Tasarımı</h3>
+        <p data-i18n="project5Text">Birden fazla parçadan oluşan montaj yapısı ve üretim hazırlığı.</p>
+      </div>
+    </div>
+
+    <div class="project-showcase wide">
+      <img src="images/render6.jpg" alt="Üretime hazır CAD CAM tasarım">
+      <div class="project-overlay">
+        <span data-i18n="project6Tag">Üretim / CAD-CAM</span>
+        <h3 data-i18n="project6Title">Üretime Hazır Tasarım</h3>
+        <p data-i18n="project6Text">İmalat sürecine uygun, ölçülendirme ve üretim mantığı düşünülerek hazırlanmış tasarım.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="arastirmalar" class="projects reveal">
-
-  <span class="section-label">ARAŞTIRMALAR</span>
-
-  <h2>Akademik Araştırmalar</h2>
+  <span class="section-label" data-i18n="researchLabel">ARAŞTIRMALAR</span>
+  <h2 data-i18n="researchTitle">Akademik Araştırmalar</h2>
 
   <div class="cards">
-
     <div class="card">
-      <img src="images/proje1.jpg" alt="SLM">
-
-      <h3>Seçici Lazer Ergitme</h3>
-
-      <p>
-        AISI 316L paslanmaz çeliğin yüzey topolojisi
-        ve mekanik özellikleri üzerine tez çalışması.
-      </p>
+      <img src="images/proje1.jpg" alt="Seçici lazer ergitme araştırması">
+      <h3 data-i18n="research1Title">Seçici Lazer Ergitme (SLM)</h3>
+      <p data-i18n="research1Text">AISI 316L paslanmaz çeliğin yüzey topolojisi ve mekanik özellikleri üzerine tez çalışması.</p>
     </div>
 
     <div class="card">
-      <img src="images/proje2.jpg" alt="Kaplama">
-
-      <h3>Termal Bariyer Kaplama</h3>
-
-      <p>
-        Termal bariyer kaplama teknolojileri ve bu teknolojilerin
-        faydaları hakkında araştırma.
-      </p>
+      <img src="images/proje2.jpg" alt="Termal bariyer kaplama araştırması">
+      <h3 data-i18n="research2Title">Termal Bariyer Kaplama</h3>
+      <p data-i18n="research2Text">Termal bariyer kaplama teknolojileri ve bu teknolojilerin faydaları hakkında araştırma.</p>
     </div>
 
     <div class="card">
-      <img src="images/proje3.jpg" alt="Rüzgar">
+      <img src="images/proje3.jpg" alt="Rüzgar enerjisi potansiyeli araştırması">
+      <h3 data-i18n="research3Title">Rüzgar Enerjisi Potansiyeli</h3>
+      <p data-i18n="research3Text">Türkiye’nin rüzgar enerjisi potansiyeli ve rüzgar türbinleri üzerine rapor çalışması.</p>
+    </div>
+  </div>
+</section>
 
-      <h3>Rüzgar Enerjisi Potansiyeli</h3>
+<section id="hizmetler" class="services reveal">
+  <span class="section-label" data-i18n="servicesLabel">HİZMETLERİM</span>
+  <h2 data-i18n="servicesTitle">Neler Yapıyorum?</h2>
 
-      <p>
-        Türkiye’nin rüzgar enerjisi potansiyeli
-        üzerine rapor çalışması.
-      </p>
+  <div class="service-grid">
+    <div class="service light">
+      <h3 data-i18n="service1Title">Sac Metal Tasarımı</h3>
+      <p data-i18n="service1Text">Sac metal parçalar için profesyonel CAD tasarımı, teknik resim, büküm ve üretim hazırlığı.</p>
     </div>
 
+    <div class="service">
+      <h3 data-i18n="service2Title">3D Yazıcı Siparişleri</h3>
+      <p data-i18n="service2Text">PLA, ABS, PETG gibi malzemelerde prototip ve fonksiyonel parça üretimi.</p>
+    </div>
+
+    <div class="service">
+      <h3 data-i18n="service3Title">Prototipleme Hizmetleri</h3>
+      <p data-i18n="service3Text">Fikirden fiziksel ürüne kadar modelleme, 3D baskı ve test süreci.</p>
+    </div>
+  </div>
+</section>
+
+<section id="beceriler" class="skills reveal">
+  <span class="section-label" data-i18n="skillsLabel">TEKNİK YETKİNLİKLER</span>
+  <h2 data-i18n="skillsTitle">Teknik Yetkinlikler</h2>
+
+  <div class="service-grid">
+    <div class="service light">
+      <h3 data-i18n="skill1Title">CAD & CAM</h3>
+      <p data-i18n="skill1Text">SolidWorks, Autodesk Fusion, Siemens NX ve Siemens NX Manufacturing ile tasarım ve CAM çalışmaları.</p>
+    </div>
+
+    <div class="service">
+      <h3 data-i18n="skill2Title">İmalat & Kalite</h3>
+      <p data-i18n="skill2Text">CNC freze, lazer kesim, abkant pres, kaynaklı imalat, kalite kontrol ve tolerans analizi.</p>
+    </div>
+
+    <div class="service">
+      <h3 data-i18n="skill3Title">Malzeme & Analiz</h3>
+      <p data-i18n="skill3Text">Malzeme bilgisi, termal analiz, yüzey topolojisi ve üretim süreçleri optimizasyonu.</p>
+    </div>
+  </div>
+</section>
+
+<section id="ozgecmis" class="resume reveal">
+  <span class="section-label" data-i18n="resumeLabel">ÖZGEÇMİŞ</span>
+  <h2 data-i18n="resumeTitle">Profesyonel Deneyim ve Eğitim</h2>
+
+  <div class="resume-layout">
+    <div class="resume-card glass">
+      <h3 data-i18n="experienceTitle">Deneyim</h3>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="date" data-i18n="job1Date">Ekim 2024 - Ekim 2025</span>
+          <h4 data-i18n="job1Title">Üretim Mühendisi</h4>
+          <p class="company">PSM Plaster Systems / Ümraniye, İstanbul</p>
+          <p class="job-desc" data-i18n="job1Text">Üretim süreçleri, kalite kontrol, montaj operasyonları, stok yönetimi ve CAD/CAM destekli tasarım çalışmalarında görev aldım.</p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="date" data-i18n="job2Date">Temmuz 2024 - Eylül 2024</span>
+          <h4 data-i18n="job2Title">Makine Mühendisi Stajyeri</h4>
+          <p class="company">ESAYSAN Endüstriyel Metal Ürünleri / Odunpazarı, Eskişehir</p>
+          <p class="job-desc" data-i18n="job2Text">Talaşsız imalat, lazer kesim, abkant pres, kaynaklı imalat, Ar-Ge ve kalite kontrol süreçlerinde aktif olarak yer aldım.</p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="date" data-i18n="job3Date">Ocak 2024 - Şubat 2024</span>
+          <h4 data-i18n="job3Title">Makine Mühendisi Stajyeri</h4>
+          <p class="company">GPS Makine / Hacılar, Kayseri</p>
+          <p class="job-desc" data-i18n="job3Text">CAD/CAM programları, CNC freze kullanımı, 3 boyutlu parça tasarımı ve kalite kontrol çalışmalarında deneyim kazandım.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-side">
+      <div class="mini-card glass">
+        <h3 data-i18n="educationTitle">Eğitim</h3>
+        <span class="date">2024</span>
+        <h4 data-i18n="educationDegree">Makine Mühendisliği</h4>
+        <p class="company" data-i18n="educationSchool">Eskişehir Osmangazi Üniversitesi</p>
+      </div>
+
+      <div class="mini-card glass">
+        <h3 data-i18n="technicalSkillsTitle">Teknik Beceriler</h3>
+
+        <div class="skill-tags">
+          <span>SolidWorks</span>
+          <span>Autodesk Fusion</span>
+          <span>Siemens NX</span>
+          <span>NX Manufacturing</span>
+          <span>CAD/CAM</span>
+          <span>CNC Freze</span>
+          <span data-i18n="tagQuality">Kalite Kontrol</span>
+          <span data-i18n="tagTolerance">Tolerans Analizi</span>
+        </div>
+      </div>
+
+      <div class="mini-card cv-box">
+        <h3 data-i18n="pdfTitle">PDF Özgeçmiş</h3>
+        <p data-i18n="pdfText">Detaylı özgeçmişimi PDF olarak inceleyebilirsiniz.</p>
+        <a href="Ibrahim_Eren_Doruk_Cv.pdf" target="_blank" class="primary-btn" data-i18n="pdfButton">CV’yi Görüntüle</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sertifikalar" class="certificates reveal">
+  <span class="section-label" data-i18n="certLabel">SERTİFİKALAR</span>
+  <h2 data-i18n="certTitle">Kurs ve Sertifikalar</h2>
+
+  <div class="service-grid certificates-grid">
+    <div class="service light">
+      <h3 data-i18n="cert1Title">TEI TUSAŞ Motor Sanayii A.Ş. Eğitimi</h3>
+      <p data-i18n="cert1Text">Türbin motoru tasarımı, termal analiz, imalat ve kalite kontrol alanlarında eğitim.</p>
+    </div>
+
+    <div class="service">
+      <h3 data-i18n="cert2Title">Otomotiv Yaz Kampı</h3>
+      <p data-i18n="cert2Text">Hidrojen yakıtlı ve elektrikli araçlar hakkında teknik bilgiler edinilen eğitim programı.</p>
+    </div>
+
+    <div class="service">
+      <h3 data-i18n="cert3Title">Yalın Üretim</h3>
+      <p data-i18n="cert3Text">Üretim süreçlerinde verimlilik ve israf azaltma teknikleri üzerine eğitim.</p>
+    </div>
+
+    <div class="service">
+      <h3 data-i18n="cert4Title">Sac Metal Tasarımı</h3>
+      <p data-i18n="cert4Text">Sac metal parçaların tasarımı, katlama analizi ve üretim hazırlığı üzerine eğitim.</p>
+    </div>
   </div>
 </section>
 
 <section id="iletisim" class="contact reveal">
-
-  <h2>İletişime Geç</h2>
-
-  <p>
-    Benimle proje, tasarım veya üretim çalışmaları için
-    iletişime geçebilirsiniz.
-  </p>
+  <h2 data-i18n="contactTitle">İletişime Geç</h2>
+  <p data-i18n="contactText">Benimle proje, tasarım veya üretim çalışmaları için iletişime geçebilirsiniz.</p>
 
   <div class="contact-links">
-
-    <a
-      href="mailto:ibrahimerendoruk0@gmail.com"
-      class="primary-btn"
-    >
-      Mail Gönder
-    </a>
-
-    <a
-      href="https://www.linkedin.com/in/ibrahimerendoruk/"
-      target="_blank"
-      class="secondary-btn"
-    >
-      LinkedIn
-    </a>
-
+    <a href="mailto:ibrahimerendoruk0@gmail.com" class="primary-btn" data-i18n="mailButton">Mail Gönder</a>
+    <a href="https://www.linkedin.com/in/ibrahimerendoruk/" target="_blank" class="secondary-btn">LinkedIn</a>
   </div>
 </section>
 
 <footer>
-  <p>
-    © 2026 İbrahim Eren Doruk.
-    Tüm hakları saklıdır.
-  </p>
+  <p data-i18n="footerText">© 2026 İbrahim Eren Doruk. Tüm hakları saklıdır.</p>
 </footer>
 
 <script src="script.js"></script>
-
 </body>
 </html>
