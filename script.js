@@ -382,4 +382,4 @@ langButtons.forEach(button => {
 const savedLanguage = localStorage.getItem("siteLanguage") || "tr";
 setLanguage(savedLanguage);
 
-console.log("Çok dilli site çalışıyor");
+console.log("Stabil çok dilli site çalışıyor");
