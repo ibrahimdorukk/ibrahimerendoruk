@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ibrahimerendoruk.vercel.app/sitemap.xml
