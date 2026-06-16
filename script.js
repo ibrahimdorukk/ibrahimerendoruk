@@ -573,7 +573,142 @@ const blogPosts = [
     tag:   'CNC / CAM',
     title: { tr: 'CNC Freze Programlamada Takım Yolu Optimizasyonu', en: 'Tool Path Optimization in CNC Milling Programming', de: 'Werkzeugwegoptimierung in der CNC-Frässprogrammierung' },
     desc:  { tr: 'NX Manufacturing ile 3 eksenli takım yolu oluştururken talaş yükü, ilerleme hızı ve güvenli yükseklik parametrelerinin önemi.', en: 'The importance of chip load, feed rate, and safe height parameters when creating 3-axis tool paths with NX Manufacturing.', de: 'Die Bedeutung von Spanvolumen, Vorschubgeschwindigkeit und Sicherheitshöhenparametern bei der Erstellung von 3-Achs-Werkzeugwegen mit NX Manufacturing.' },
-    content: null,
+    content: {
+      tr: `<h3>Giriş</h3>
+<p>Siemens NX Manufacturing, 3 eksenli frezeleme operasyonları için güçlü takım yolu oluşturma ve optimizasyon araçları sunar. Doğru parametreler seçilmeden oluşturulan takım yolları; takım kırılmasına, yüzey kalitesi sorunlarına ve gereksiz çevrim sürelerine yol açabilir. Bu yazıda, NX ortamında 3 eksenli bir frezeleme operasyonu programlarken kritik öneme sahip üç parametre grubunu ele alıyorum: talaş yükü, ilerleme hızı ve güvenli yükseklik.</p>
+
+<h3>1. Temel Formüller</h3>
+<p>Tüm parametreler birbiriyle bağlantılıdır. İşte başlangıç noktası olan iki temel formül:</p>
+<ul>
+  <li><strong>Devir Sayısı (RPM):</strong> RPM = (Vc × 1000) / (π × D) — burada Vc kesme hızı (m/dak), D ise takım çapıdır (mm). Örneğin 6061 alüminyumu 10 mm'lik bir freze ile 300 m/dak kesme hızında işlerken: RPM = (300 × 1000) / (3,14 × 10) ≈ 9.550 devir/dak.</li>
+  <li><strong>İlerleme Hızı (mm/dak):</strong> F = RPM × Diş Sayısı × Talaş Yükü (diş başına). Örneğin 9.550 RPM, 4 dişli freze ve 0,06 mm talaş yükü: F = 9.550 × 4 × 0,06 = 2.292 mm/dak.</li>
+</ul>
+<p>NX'te bu değerleri Feeds and Speeds diyaloğuna girerken "Cut" ilerleme hızı olarak F değerini, Spindle Speed alanına ise RPM değerini giriyorsunuz.</p>
+
+<h3>2. Talaş Yükü (Chip Load)</h3>
+<p>Talaş yükü, kesici kenarın her devirde kaldırdığı talaş kalınlığıdır (diş başına mm). Bu parametre, takım ömrünü ve yüzey kalitesini doğrudan belirler. Çok düşük talaş yükü, takımın kesmek yerine sürtmesine ve dolayısıyla ısı birikimine, iş sertleşmesine (work hardening) ve hızlı takım körelmesine yol açar. Çok yüksek talaş yükü ise kesme kuvvetlerini aşarak takım kırılmasına neden olur.</p>
+<p>Genel başlangıç değerleri (karbür freze, soğutuculu):</p>
+<ul>
+  <li><strong>Alüminyum (6061):</strong> 0,05–0,10 mm/diş</li>
+  <li><strong>Yumuşak Çelik (1018):</strong> 0,03–0,06 mm/diş</li>
+  <li><strong>Paslanmaz Çelik (304):</strong> 0,02–0,04 mm/diş</li>
+  <li><strong>Takım Çeliği:</strong> 0,01–0,03 mm/diş</li>
+</ul>
+<p>NX'te kaba işleme (roughing) operasyonlarında bu değerlerin üst sınırını, bitirme (finishing) operasyonlarında alt sınırını kullanmak iyi bir başlangıç noktasıdır. Adaptif frezeleme (Adaptive Milling) stratejisi kullanıldığında NX, köşelerde ani talaş yükü artışlarını otomatik olarak yumuşatır; bu sayede takım ömrü uzar.</p>
+
+<h3>3. İlerleme ve Devir Optimizasyonu</h3>
+<p>Ham bir parçadan işe başlarken aşağıdaki mantığı izliyorum:</p>
+<ul>
+  <li><strong>Kaba işleme:</strong> Yüksek eksenel derinlik (1–1,5× takım çapı), düşük radyal adım (%20–30 takım çapı), yüksek talaş yükü. Hedef: maksimum malzeme kaldırma hızı (MRR).</li>
+  <li><strong>Yarı bitirme:</strong> Orta eksenel derinlik (0,5× takım çapı), orta radyal adım (%40–50), normal talaş yükü. Hedef: bitirme payı bırakmak.</li>
+  <li><strong>Bitirme:</strong> Düşük eksenel derinlik (0,1–0,3 mm), tam radyal adım ama düşük talaş yükü. Hedef: yüzey kalitesi (Ra değeri).</li>
+</ul>
+<p>NX'in Cavity Mill operasyonunda "Maximum Distance" parametresi eksenel adımı, "Stepover" ise radyal adımı kontrol eder. Bu iki parametreyi doğru ayarlamak, hem yüzey kalitesini hem de çevrim süresini belirler.</p>
+
+<h3>4. Güvenli Yükseklik (Safe/Clearance Plane)</h3>
+<p>NX Manufacturing'de takım yolu geometrisi oluştururken üç kritik Z seviyesi vardır:</p>
+<ul>
+  <li><strong>Clearance Plane (Güvenli Düzlem):</strong> Operasyonlar arası hızlı hareketlerde takımın çekileceği yükseklik. İş parçası üzerindeki en yüksek noktadan en az 50–100 mm yukarıda tanımlanmalıdır. Çok düşük ayarlamak çarpışma riskine yol açar; çok yüksek ayarlamak ise gereksiz boş hareket süresi ekler.</li>
+  <li><strong>Transfer/Rapid Plane:</strong> Aynı operasyon içindeki geçişlerde kullanılan hızlı hareket seviyesi. Bağlama elemanlarının (mengene, punta) en yüksek noktasından en az 5–10 mm yukarıda olmalıdır.</li>
+  <li><strong>Feed Plane (İlerleme Düzlemi):</strong> Takımın hızlı hareketten besleme hızına geçtiği Z seviyesi. Parça yüzeyinin 2–5 mm üzerinde tanımlanır. Bu mesafe çok büyük seçilirse parçadan uzakta gereksiz yavaş hareket oluşur; çok küçük seçilirse plunge (dikey dalma) sırasında takıma aşırı yük biner.</li>
+</ul>
+<p>NX'te bu değerler, operasyonun "Non-Cutting Moves" sekmesi altında Clearance, Transfer/Rapid ve Approach Distance parametreleriyle tanımlanır. Tüm operasyonlar için tutarlı bir Clearance Plane kullanmak, post-processor çıktısında G28/G30 güvenli nokta referanslarının doğru çalışmasını sağlar.</p>
+
+<h3>5. NX'e Özgü Önemli Noktalar</h3>
+<ul>
+  <li><strong>IPW (In-Process Workpiece):</strong> NX, önceki operasyonların kaldırdığı malzemeyi takip ederek sonraki operasyonun takım yolunu yalnızca kalan malzemeye göre hesaplar. Bu özelliği aktif tutmak, boşta kesme (air cutting) süresini önemli ölçüde azaltır.</li>
+  <li><strong>Adaptive Milling (Trochoidal):</strong> Köşelerde ani radyal temas artışını önlemek için takım yoluna otomatik yay geçişleri ekler. Özellikle paslanmaz çelik ve takım çeliği işlemede faydalıdır.</li>
+  <li><strong>Çarpışma Simülasyonu:</strong> NC kodunu makineye göndermeden önce NX'in Verify komutuyla takım, fikstür ve iş parçası arasındaki çarpışmaları simüle etmek, takım kırılması ve parça hasarını önler.</li>
+</ul>
+
+<h3>Sonuç</h3>
+<p>NX Manufacturing'de 3 eksenli bir takım yolunu optimize etmek, yalnızca doğru stratejiyi seçmekle bitmez. Talaş yükünü malzeme ve takım çapına göre hesaplamak, ilerleme-devir ikilisini formülle doğrulamak ve güvenli yükseklik parametrelerini gerçekçi değerlerle tanımlamak; hem takım ömrünü hem de parça kalitesini doğrudan etkiler. Bu parametreleri bir kez doğru kurguladığınızda aynı şablonu benzer malzeme-takım kombinasyonlarında tekrar kullanabilirsiniz.</p>`,
+
+      en: `<h3>Introduction</h3>
+<p>Siemens NX Manufacturing offers powerful tool path generation and optimization tools for 3-axis milling operations. Tool paths created without the right parameters can lead to tool breakage, poor surface finish, and unnecessarily long cycle times. In this post, I cover three critical parameter groups when programming a 3-axis milling operation in NX: chip load, feed rate, and safe height.</p>
+
+<h3>1. The Core Formulas</h3>
+<p>All parameters are interconnected. Here are the two fundamental formulas:</p>
+<ul>
+  <li><strong>Spindle Speed (RPM):</strong> RPM = (Vc × 1000) / (π × D) — where Vc is cutting speed (m/min) and D is tool diameter (mm). For example, machining 6061 aluminum with a 10mm end mill at 300 m/min: RPM = (300 × 1000) / (3.14 × 10) ≈ 9,550 RPM.</li>
+  <li><strong>Feed Rate (mm/min):</strong> F = RPM × Number of Flutes × Chip Load per tooth. For example, 9,550 RPM, 4-flute end mill, 0.06 mm chip load: F = 9,550 × 4 × 0.06 = 2,292 mm/min.</li>
+</ul>
+
+<h3>2. Chip Load</h3>
+<p>Chip load is the thickness of material each cutting edge removes per revolution (mm per tooth). Too low causes rubbing instead of cutting — heat buildup, work hardening, rapid dulling. Too high exceeds cutting forces and breaks the tool.</p>
+<p>General starting values (carbide end mill, flood coolant):</p>
+<ul>
+  <li><strong>Aluminum (6061):</strong> 0.05–0.10 mm/tooth</li>
+  <li><strong>Mild Steel (1018):</strong> 0.03–0.06 mm/tooth</li>
+  <li><strong>Stainless Steel (304):</strong> 0.02–0.04 mm/tooth</li>
+  <li><strong>Tool Steel:</strong> 0.01–0.03 mm/tooth</li>
+</ul>
+<p>In NX, use the upper end of these ranges for roughing and the lower end for finishing. When using Adaptive Milling, NX automatically smooths sudden chip load spikes in corners, extending tool life significantly.</p>
+
+<h3>3. Feed and Speed Optimization</h3>
+<ul>
+  <li><strong>Roughing:</strong> High axial depth (1–1.5× tool diameter), low radial stepover (20–30%), high chip load. Goal: maximum material removal rate (MRR).</li>
+  <li><strong>Semi-finishing:</strong> Medium axial depth (0.5× tool diameter), medium stepover (40–50%), normal chip load. Goal: leave a consistent finishing allowance.</li>
+  <li><strong>Finishing:</strong> Low axial depth (0.1–0.3 mm), full-width but low chip load. Goal: surface quality (Ra value).</li>
+</ul>
+<p>In NX's Cavity Mill operation, "Maximum Distance" controls axial step, and "Stepover" controls radial step. Getting these two right determines both surface quality and cycle time.</p>
+
+<h3>4. Safe Height (Clearance Plane)</h3>
+<p>Three critical Z levels in NX Manufacturing:</p>
+<ul>
+  <li><strong>Clearance Plane:</strong> The retract height for rapid moves between operations. Set at least 50–100 mm above the highest point of the workpiece. Too low risks collision; too high wastes cycle time.</li>
+  <li><strong>Transfer/Rapid Plane:</strong> Rapid travel height within the same operation. At least 5–10 mm above the highest fixture point (vise, clamp).</li>
+  <li><strong>Feed Plane:</strong> The Z level where the tool transitions from rapid to feed rate. Typically 2–5 mm above the part surface. Too large causes slow air-cutting; too small overloads the tool during the plunge.</li>
+</ul>
+<p>In NX, these are defined under the "Non-Cutting Moves" tab of each operation via the Clearance, Transfer/Rapid, and Approach Distance parameters.</p>
+
+<h3>5. NX-Specific Key Points</h3>
+<ul>
+  <li><strong>IPW (In-Process Workpiece):</strong> NX tracks material removed by previous operations and limits the next tool path to remaining stock only, significantly reducing air-cutting time.</li>
+  <li><strong>Adaptive Milling:</strong> Automatically adds arc transitions at corners to prevent sudden increases in radial engagement. Especially useful for stainless steel and tool steel.</li>
+  <li><strong>Collision Simulation:</strong> Always run Verify before sending NC code to the machine to detect collisions between tool, fixture, and workpiece.</li>
+</ul>
+
+<h3>Conclusion</h3>
+<p>Optimizing a 3-axis tool path in NX Manufacturing goes beyond just selecting the right strategy. Calculating chip load based on material and tool diameter, validating feed-RPM pairs with formulas, and defining safe height parameters with realistic values all directly impact tool life and part quality. Once properly calibrated, the same template can be reused across similar material-tool combinations.</p>`,
+
+      de: `<h3>Einleitung</h3>
+<p>Siemens NX Manufacturing bietet leistungsstarke Werkzeugweg-Erstellungs- und Optimierungswerkzeuge für 3-Achs-Fräsoperationen. Ohne die richtigen Parameter erstellte Werkzeugwege können zu Werkzeugbruch, schlechter Oberflächenqualität und unnötig langen Zykluszeiten führen. In diesem Beitrag behandle ich drei kritische Parametergruppen bei der Programmierung einer 3-Achs-Fräsoperation in NX: Spanvolumen, Vorschubgeschwindigkeit und Sicherheitshöhe.</p>
+
+<h3>1. Grundformeln</h3>
+<ul>
+  <li><strong>Drehzahl (RPM):</strong> RPM = (Vc × 1000) / (π × D) — Vc = Schnittgeschwindigkeit (m/min), D = Werkzeugdurchmesser (mm). Beispiel: 6061-Aluminium mit 10-mm-Fräser bei 300 m/min: RPM ≈ 9.550 U/min.</li>
+  <li><strong>Vorschubgeschwindigkeit (mm/min):</strong> F = RPM × Schneidenzahl × Spandicke pro Zahn. Beispiel: 9.550 RPM, 4-schneidiger Fräser, 0,06 mm: F = 2.292 mm/min.</li>
+</ul>
+
+<h3>2. Spanvolumen (Chip Load)</h3>
+<p>Das Spanvolumen ist die Materialdicke, die jede Schneide pro Umdrehung abträgt. Richtwerte (Hartmetall, Kühlmittel):</p>
+<ul>
+  <li><strong>Aluminium (6061):</strong> 0,05–0,10 mm/Schneide</li>
+  <li><strong>Weichstahl (1018):</strong> 0,03–0,06 mm/Schneide</li>
+  <li><strong>Edelstahl (304):</strong> 0,02–0,04 mm/Schneide</li>
+  <li><strong>Werkzeugstahl:</strong> 0,01–0,03 mm/Schneide</li>
+</ul>
+<p>Bei NX empfiehlt sich für Schruppen der obere Bereich, für Schlichten der untere Bereich dieser Werte. Das Adaptive Milling-Verfahren in NX glättet plötzliche Spanvolumen-Spitzen in Ecken automatisch.</p>
+
+<h3>3. Sicherheitshöhe (Clearance Plane)</h3>
+<p>Drei kritische Z-Ebenen in NX Manufacturing:</p>
+<ul>
+  <li><strong>Clearance Plane:</strong> Rückzugshöhe für schnelle Bewegungen zwischen Operationen. Mindestens 50–100 mm über dem höchsten Werkstückpunkt.</li>
+  <li><strong>Transfer/Rapid Plane:</strong> Schnellfahrhöhe innerhalb derselben Operation. Mindestens 5–10 mm über dem höchsten Spannmittelpunkt.</li>
+  <li><strong>Feed Plane:</strong> Z-Ebene, bei der das Werkzeug von Schnellfahrt auf Vorschub wechselt. Typisch 2–5 mm über der Werkstückoberfläche.</li>
+</ul>
+
+<h3>4. NX-spezifische Hinweise</h3>
+<ul>
+  <li><strong>IPW (In-Process Workpiece):</strong> NX verfolgt abgetragenes Material und beschränkt den nächsten Werkzeugweg auf verbleibendes Rohmaterial — reduziert Luftschneiden erheblich.</li>
+  <li><strong>Adaptive Milling:</strong> Fügt automatisch Bogenübergänge in Ecken ein, um plötzliche Erhöhungen des radialen Eingriffs zu vermeiden.</li>
+  <li><strong>Kollisionssimulation:</strong> Vor dem Senden des NC-Codes immer Verify ausführen, um Kollisionen zwischen Werkzeug, Spannmittel und Werkstück zu erkennen.</li>
+</ul>
+
+<h3>Fazit</h3>
+<p>Die Optimierung eines 3-Achs-Werkzeugwegs in NX Manufacturing geht über die bloße Strategiewahl hinaus. Die Berechnung des Spanvolumens nach Material und Werkzeugdurchmesser, die Validierung von Vorschub-Drehzahl-Paaren mit Formeln und die realistische Definition der Sicherheitshöhenparameter beeinflussen Werkzeugstandzeit und Teilequalität direkt.</p>`,
+    },
   },
   {
     date:  { tr: 'Ocak 2026',    en: 'January 2026', de: 'Januar 2026'  },
