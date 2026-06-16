@@ -464,22 +464,123 @@ function closeModal() {
 /* ─── BLOG SECTION ────────────────────────── */
 const blogPosts = [
   {
-    date:  { tr: 'Mayıs 2026',   en: 'May 2026',     de: 'Mai 2026'     },
+    date:  { tr: 'Mayıs 2026', en: 'May 2026', de: 'Mai 2026' },
     tag:   'CAD/CAM',
-    title: { tr: "SolidWorks'te Sheet Metal Tasarımında Dikkat Edilmesi Gerekenler", en: 'Key Considerations in SolidWorks Sheet Metal Design', de: 'Wichtige Aspekte beim Blechkonstruktion in SolidWorks' },
-    desc:  { tr: 'Büküm yarıçapı, K-faktörü ve flat pattern hesaplamalarında karşılaşılan yaygın hatalar ve çözümleri üzerine kısa bir rehber.', en: 'A short guide on common mistakes and solutions in bend radius, K-factor, and flat pattern calculations.', de: 'Ein kurzer Leitfaden zu häufigen Fehlern bei Biegeradius, K-Faktor und Abwicklungsberechnungen.' },
+    title: {
+      tr: "SolidWorks'te Sheet Metal Tasarımında Dikkat Edilmesi Gerekenler",
+      en: 'Key Considerations in SolidWorks Sheet Metal Design',
+      de: 'Wichtige Aspekte bei der Blechkonstruktion in SolidWorks',
+    },
+    desc: {
+      tr: 'Büküm yarıçapı, K-faktörü ve flat pattern hesaplamalarında karşılaşılan yaygın hatalar ve çözümleri üzerine kısa bir rehber.',
+      en: 'A guide on common mistakes and solutions in bend radius, K-factor, and flat pattern calculations.',
+      de: 'Ein Leitfaden zu häufigen Fehlern bei Biegeradius, K-Faktor und Abwicklungsberechnungen.',
+    },
+    content: {
+      tr: `<h3>Giriş</h3>
+<p>SolidWorks'ün Sheet Metal modülü, sac metal parçaları hızlı ve verimli bir şekilde tasarlamak için güçlü araçlar sunar. Ancak bu araçların kolaylığı, bazı kritik parametrelerin gözden kaçırılmasına neden olabilir. Flat pattern (açınım) doğruluğunu doğrudan etkileyen büküm yarıçapı, K-faktörü ve hesaplama yönteminin yanlış seçilmesi; üretime giden parçaların tolerans dışı çıkmasına, hatta tamamen hurdaya ayrılmasına yol açabilir.</p>
+
+<h3>1. Büküm Yarıçapı (Bend Radius)</h3>
+<p>SolidWorks'te varsayılan büküm yarıçapı genellikle 2,54 mm (0.100 inç) olarak gelir. Bu değer standart abkant pres takımlarıyla uyuşmayabilir ve özel takım gerektirebilir. Endüstriyel pratikte en yaygın kural şudur: minimum büküm yarıçapı ≥ malzeme kalınlığı (1T kuralı). Örneğin 2 mm çelik sacın minimum büküm yarıçapı 2 mm olmalıdır.</p>
+<p>Bununla birlikte, malzeme tipine göre bu kural değişir. 6061-T6 alüminyum gibi sert alaşımlar, çatlamayı önlemek için genellikle 2T veya daha büyük bir yarıçap gerektirir. Yapıyı gereğinden küçük yarıçapla tasarlamak dış yüzeyde çatlak ve iç yapıda mikro kırıklara neden olur. Tüm bükümlerde aynı yarıçapı kullanmak ise takım değişimini azaltarak hem maliyet hem de üretim süresi açısından avantaj sağlar.</p>
+
+<h3>2. K-Faktörü Nedir ve Neden Önemlidir?</h3>
+<p>K-faktörü, malzeme büküldüğünde tarafsız eksenin (ne gerilme ne sıkışma yaşayan düzlem) malzeme kalınlığı içindeki konumunu tanımlayan orandır. Formülü şu şekilde ifade edilir: K = t / T; burada t nötr eksenden iç büküm yüzeyine olan mesafeyi, T ise toplam malzeme kalınlığını gösterir.</p>
+<p>K-faktörü genellikle 0,30 ile 0,50 arasında değişir. Hava bükme (air bending) işlemlerinde 0,33–0,38, dipte bükme (bottoming) işlemlerinde ise 0,42–0,50 aralığı tipiktir. Paslanmaz çelik gibi sert metallerde K-faktörü daha yüksektir. Yanlış bir K-faktörü kullanmak, flat pattern boyutlarında bükme başına 1–3 mm sapmaya yol açabilir. Dört bükümlü bir parçada bu hata birikir ve 5–10 mm'ye ulaşabilir; bu tolerans dışı bir parça demektir.</p>
+<p>SolidWorks'te K-faktörünü gerçek üretim değerlerine göre ayarlamak için Sheet Metal parametrelerine girip Bend Allowance tablosunu düzenlemek yeterlidir. Farklı malzeme ve kalınlıklar için özel tablolar oluşturmak, uzun vadede büyük doğruluk kazanımı sağlar.</p>
+
+<h3>3. Flat Pattern Hesaplama Yöntemleri</h3>
+<p>SolidWorks üç farklı flat pattern hesaplama yöntemi sunar:</p>
+<ul>
+  <li><strong>K-Faktörü:</strong> Varsayılan yöntemdir. Çoğu kullanım senaryosu için yeterince doğrudur; ancak K-faktörünün gerçek değerle eşleşmesi şarttır.</li>
+  <li><strong>Bend Allowance (Büküm Payı):</strong> Nötr eksenden ölçülen ark uzunluğudur. Fabrikadan doğrudan bu değeri alıp girmek mümkündür.</li>
+  <li><strong>Bend Deduction (Büküm Kesintisi):</strong> Flat pattern uzunluğunu belirlemek için flanş uzunluklarından çıkarılan değerdir. Eski referanslar ve bazı yazılımlar bu yöntemi kullanır. Matematiksel olarak Bend Allowance ile eşdeğerdir; hangisini kullandığınızı bilerek seçin.</li>
+</ul>
+<p>Hangi yöntemi seçeceğiniz büyük ölçüde fabrikana bağlıdır. Üretim yapacağınız atölyeyle aynı dili konuşmak, flat pattern uyuşmazlıklarını baştan önler.</p>
+
+<h3>4. Sık Yapılan Hatalar</h3>
+<ul>
+  <li><strong>Büküm çizgisine çok yakın delik/slot açmak:</strong> Büküm işlemi malzemeyi gerer ve yakın konumdaki delikleri oval hale getirir. Güvenli mesafe: delik kenarından büküm çizgisine en az 2T + R (T = kalınlık, R = büküm yarıçapı).</li>
+  <li><strong>Flanş yüksekliğini çok kısa bırakmak:</strong> Minimum flanş yüksekliği 4T olmalıdır; aksi halde zımba parçayı tutamaz, büküm gerçekleşmez.</li>
+  <li><strong>Tüm bükümlere farklı yarıçap atamak:</strong> Her farklı yarıçap bir takım değişimi demektir. Tasarımda mümkün olduğunca tek bir standart yarıçap kullanmak üretim maliyetini ve süresini azaltır.</li>
+  <li><strong>Alüminyumda tane yönünü görmezden gelmek:</strong> Hadde yönüne paralel büküm, çatlak riskini artırır. Kritik alüminyum parçalarda büküm yönü tane yönüne dik olacak şekilde planlanmalıdır.</li>
+  <li><strong>Varsayılan K-faktörüyle flat pattern çıkarmak:</strong> Fabrikana gönderilecek flat pattern dosyasında K-faktörünü fabrikaya sormadan kullanmak, parçanın ölçü dışı çıkmasının en yaygın nedenidir.</li>
+</ul>
+
+<h3>5. Pratik Öneri: Fabrikayla Koordinasyon</h3>
+<p>Tasarımın ne kadar doğru olursa olsun, her abkant pres makinesi farklı takım geometrisine ve bükme davranışına sahiptir. Bu nedenle üretim yapacağınız atölye veya fabrikayla büküm yarıçapı ve K-faktörünü önceden doğrulamak, hem tasarım revizyonu süresini hem de hurda oranını önemli ölçüde düşürür. Mümkünse üretimden önce test bükümleri yapmalarını isteyin ve K-faktörünüzü bu test sonuçlarına göre güncelleyin.</p>
+
+<h3>Sonuç</h3>
+<p>SolidWorks Sheet Metal, doğru parametrelerle kullanıldığında üretime doğrudan hazır, boyutsal olarak güvenilir parçalar üretmenize olanak tanır. Büküm yarıçarını malzeme kalınlığına göre seçmek, K-faktörünü gerçek üretim koşullarına göre ayarlamak ve flat pattern yöntemini bilinçli tercih etmek; tasarım masasından fabrika zeminine sorunsuz bir aktarım sağlar.</p>`,
+
+      en: `<h3>Introduction</h3>
+<p>SolidWorks' Sheet Metal module offers powerful tools for designing sheet metal parts quickly and efficiently. However, the ease of these tools can lead to overlooking critical parameters. Incorrect selection of bend radius, K-factor, or flat pattern calculation method directly affects flat pattern accuracy — and can result in parts that fall outside tolerances or need to be scrapped entirely.</p>
+
+<h3>1. Bend Radius</h3>
+<p>SolidWorks defaults the bend radius to 2.54 mm (0.100 in). This value may not match standard press brake tooling and can require custom tools. The most common industrial rule is: minimum bend radius ≥ material thickness (the 1T rule). For 2 mm steel, the minimum bend radius should be 2 mm.</p>
+<p>That said, the rule varies by material. Hard alloys like 6061-T6 aluminum typically require 2T or larger to prevent cracking. Using the same radius throughout the design reduces tooling changes, saving both cost and production time.</p>
+
+<h3>2. What Is the K-Factor and Why Does It Matter?</h3>
+<p>The K-factor defines the position of the neutral axis (the plane that neither stretches nor compresses) within the material thickness during bending. Formula: K = t / T, where t is the distance from the neutral axis to the inner bend surface, and T is total material thickness.</p>
+<p>K-factor typically ranges from 0.30 to 0.50. For air bending, 0.33–0.38 is typical; for bottoming, 0.42–0.50. Harder metals like stainless steel have higher K-factors. An incorrect K-factor can cause 1–3 mm deviation per bend in flat pattern dimensions. On a part with four bends, this error accumulates and can reach 5–10 mm — an out-of-tolerance part.</p>
+
+<h3>3. Flat Pattern Calculation Methods</h3>
+<p>SolidWorks offers three flat pattern calculation methods:</p>
+<ul>
+  <li><strong>K-Factor:</strong> The default method. Accurate enough for most cases, but requires the K-factor to match the real production value.</li>
+  <li><strong>Bend Allowance:</strong> The arc length along the neutral axis. You can obtain this value directly from your fabricator.</li>
+  <li><strong>Bend Deduction:</strong> The value subtracted from flange lengths to determine flat pattern length. Mathematically equivalent to Bend Allowance — know which one your shop uses.</li>
+</ul>
+
+<h3>4. Common Mistakes</h3>
+<ul>
+  <li><strong>Holes too close to bend lines:</strong> Bending stretches material and distorts nearby holes into ovals. Safe distance: at least 2T + R from hole edge to bend line.</li>
+  <li><strong>Flange height too short:</strong> Minimum flange height should be 4T; otherwise the punch cannot engage the material.</li>
+  <li><strong>Different radii on every bend:</strong> Each unique radius means a tooling change. Use a single standard radius wherever possible.</li>
+  <li><strong>Ignoring grain direction on aluminum:</strong> Bending parallel to the rolling direction increases crack risk. Plan critical aluminum bends perpendicular to grain direction.</li>
+  <li><strong>Sending flat patterns with the default K-factor:</strong> The most common reason for out-of-spec parts — always confirm K-factor with your fabricator first.</li>
+</ul>
+
+<h3>Conclusion</h3>
+<p>When used with the right parameters, SolidWorks Sheet Metal lets you produce dimensionally reliable, production-ready parts. Selecting bend radius based on material thickness, calibrating the K-factor to real production conditions, and consciously choosing a flat pattern method ensures a smooth transfer from design desk to shop floor.</p>`,
+
+      de: `<h3>Einleitung</h3>
+<p>Das Blechmodul von SolidWorks bietet leistungsstarke Werkzeuge zur schnellen und effizienten Konstruktion von Blechteilen. Die Benutzerfreundlichkeit dieser Werkzeuge kann jedoch dazu führen, dass kritische Parameter übersehen werden. Eine falsche Auswahl von Biegeradius, K-Faktor oder der Abwicklungsberechnungsmethode wirkt sich direkt auf die Abwicklungsgenauigkeit aus — und kann dazu führen, dass Teile außerhalb der Toleranz liegen oder vollständig verschrottet werden müssen.</p>
+
+<h3>1. Biegeradius</h3>
+<p>SolidWorks setzt den Standard-Biegeradius auf 2,54 mm (0,100 Zoll). Dieser Wert stimmt möglicherweise nicht mit Standardwerkzeugen der Abkantpresse überein und kann Sonderwerkzeuge erfordern. Die gebräuchlichste Faustregel lautet: Mindestbiegeradius ≥ Materialstärke (1T-Regel). Bei 2 mm Stahl sollte der Mindestbiegeradius 2 mm betragen.</p>
+<p>Die Regel variiert je nach Material. Harte Legierungen wie 6061-T6 Aluminium benötigen in der Regel 2T oder mehr, um Risse zu vermeiden. Die Verwendung desselben Radius im gesamten Design reduziert Werkzeugwechsel und spart Kosten sowie Produktionszeit.</p>
+
+<h3>2. Was ist der K-Faktor und warum ist er wichtig?</h3>
+<p>Der K-Faktor definiert die Lage der neutralen Faser (die Ebene, die beim Biegen weder gedehnt noch gestaucht wird) innerhalb der Materialstärke. Formel: K = t / T, wobei t der Abstand von der neutralen Faser zur inneren Biegeoberfläche und T die Gesamtmaterialstärke ist.</p>
+<p>Der K-Faktor liegt typischerweise zwischen 0,30 und 0,50. Beim Luftbiegen sind 0,33–0,38 üblich, beim Prägebiegen 0,42–0,50. Härtere Metalle wie Edelstahl haben höhere K-Faktoren. Ein falscher K-Faktor kann pro Biegung zu 1–3 mm Abweichung in den Abwicklungsmaßen führen. Bei einem Teil mit vier Biegungen summiert sich dieser Fehler auf bis zu 5–10 mm.</p>
+
+<h3>3. Häufige Fehler</h3>
+<ul>
+  <li><strong>Löcher zu nah an Biegelinien:</strong> Das Biegen dehnt Material und verformt nahegelegene Löcher zu Ovalen. Sicherheitsabstand: mindestens 2T + R vom Lochrand zur Biegelinie.</li>
+  <li><strong>Zu kurze Flanschhöhe:</strong> Die Mindesflanschhöhe sollte 4T betragen; sonst kann der Stempel das Material nicht greifen.</li>
+  <li><strong>Verschiedene Radien an jeder Biegung:</strong> Jeder eindeutige Radius bedeutet einen Werkzeugwechsel. Verwenden Sie nach Möglichkeit einen einzigen Standardradius.</li>
+  <li><strong>Kornrichtung bei Aluminium ignorieren:</strong> Biegen parallel zur Walzrichtung erhöht das Rissrisiko. Kritische Aluminiumbiegungen senkrecht zur Kornrichtung planen.</li>
+  <li><strong>Abwicklung mit Standard-K-Faktor senden:</strong> Der häufigste Grund für maßabweichende Teile — K-Faktor immer zuerst mit dem Fertigungsbetrieb abstimmen.</li>
+</ul>
+
+<h3>Fazit</h3>
+<p>Mit den richtigen Parametern ermöglicht SolidWorks Sheet Metal die Erstellung dimensionell zuverlässiger, fertigungsgerechter Teile. Die Auswahl des Biegeradius entsprechend der Materialstärke, die Kalibrierung des K-Faktors auf reale Produktionsbedingungen und die bewusste Wahl der Abwicklungsmethode gewährleisten eine reibungslose Übergabe vom Konstruktionstisch an den Fertigungsbetrieb.</p>`,
+    },
   },
   {
     date:  { tr: 'Mart 2026',    en: 'March 2026',   de: 'März 2026'    },
     tag:   'CNC / CAM',
     title: { tr: 'CNC Freze Programlamada Takım Yolu Optimizasyonu', en: 'Tool Path Optimization in CNC Milling Programming', de: 'Werkzeugwegoptimierung in der CNC-Frässprogrammierung' },
     desc:  { tr: 'NX Manufacturing ile 3 eksenli takım yolu oluştururken talaş yükü, ilerleme hızı ve güvenli yükseklik parametrelerinin önemi.', en: 'The importance of chip load, feed rate, and safe height parameters when creating 3-axis tool paths with NX Manufacturing.', de: 'Die Bedeutung von Spanvolumen, Vorschubgeschwindigkeit und Sicherheitshöhenparametern bei der Erstellung von 3-Achs-Werkzeugwegen mit NX Manufacturing.' },
+    content: null,
   },
   {
     date:  { tr: 'Ocak 2026',    en: 'January 2026', de: 'Januar 2026'  },
     tag:   'Malzeme / Materials',
     title: { tr: 'AISI 316L ve Seçici Lazer Ergitme: Tez Sürecinden Notlar', en: 'AISI 316L and Selective Laser Melting: Notes from My Thesis', de: 'AISI 316L und selektives Lasersintern: Notizen aus meiner Abschlussarbeit' },
     desc:  { tr: 'Tez çalışmam sırasında SLM prosesiyle üretilen 316L numunelerin yüzey topolojisi ölçümlerinden öğrendiklerim.', en: 'What I learned from surface topology measurements of 316L specimens produced by the SLM process during my thesis.', de: 'Was ich bei der Oberflächentopologiemessung von 316L-Proben im SLM-Verfahren während meiner Abschlussarbeit gelernt habe.' },
+    content: null,
   },
 ];
 
@@ -496,15 +597,15 @@ function buildBlogSection() {
     <h2 data-i18n="blogTitle">${t.blogTitle}</h2>
     <p class="section-desc" data-i18n="blogDesc">${t.blogDesc}</p>
     <div class="blog-grid">
-      ${blogPosts.map(p => `
-        <div class="blog-card">
+      ${blogPosts.map((p, i) => `
+        <div class="blog-card" ${p.content ? `data-blog-index="${i}" style="cursor:pointer"` : ''}>
           <div class="blog-card-header">
             <span class="blog-date">${p.date[currentLang]}</span>
             <span class="blog-tag">${p.tag}</span>
             <h3>${p.title[currentLang]}</h3>
           </div>
           <p>${p.desc[currentLang]}</p>
-          <span class="blog-read-more">${t.blogReadMore}</span>
+          ${p.content ? `<span class="blog-read-more">${t.blogReadMore}</span>` : '<span class="blog-read-more" style="opacity:0.25">Yakında →</span>'}
         </div>`).join('')}
     </div>`;
 
@@ -528,6 +629,53 @@ function buildBlogSection() {
   }
 }
 
+/* ─── BLOG MODAL ─────────────────────────── */
+function buildBlogModal() {
+  const backdrop = document.createElement('div');
+  backdrop.className = 'modal-backdrop blog-modal-backdrop';
+  backdrop.innerHTML = `
+    <div class="modal-wrap">
+      <button class="modal-close" id="blogModalClose">✕</button>
+      <div class="modal blog-modal">
+        <div class="modal-body blog-modal-body">
+          <span class="modal-tag" id="blogModalTag"></span>
+          <span class="blog-date" id="blogModalDate" style="display:block;margin-bottom:16px"></span>
+          <h2 id="blogModalTitle"></h2>
+          <div class="blog-modal-content" id="blogModalContent"></div>
+        </div>
+      </div>
+    </div>`;
+  document.body.appendChild(backdrop);
+
+  document.getElementById('blogModalClose').addEventListener('click', closeBlogModal);
+  backdrop.addEventListener('click', e => { if (e.target === backdrop) closeBlogModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBlogModal(); });
+
+  // Delegate click on blog cards with content
+  document.addEventListener('click', e => {
+    const card = e.target.closest('[data-blog-index]');
+    if (!card) return;
+    const idx = parseInt(card.dataset.blogIndex);
+    const post = blogPosts[idx];
+    if (!post || !post.content) return;
+    openBlogModal(post);
+  });
+}
+
+function openBlogModal(post) {
+  document.getElementById('blogModalTag').textContent    = post.tag;
+  document.getElementById('blogModalDate').textContent   = post.date[currentLang];
+  document.getElementById('blogModalTitle').textContent  = post.title[currentLang];
+  document.getElementById('blogModalContent').innerHTML  = post.content[currentLang];
+  document.querySelector('.blog-modal-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBlogModal() {
+  document.querySelector('.blog-modal-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 /* ─── MAIN INIT ───────────────────────────── */
 initLoader();
 
@@ -537,6 +685,7 @@ document.addEventListener('DOMContentLoaded', () => {
   buildFilterBar();
   buildModal();
   buildBlogSection();
+  buildBlogModal();
   initReveal();
   initLang();       // must be last — re-applies lang over all dynamic elements
 });
