@@ -274,17 +274,7 @@ function initLoader() {
   });
 }
 
-/* ─── CURSOR GLOW ─────────────────────────── */
-function initCursor() {
-  if (window.matchMedia('(pointer: coarse)').matches) return;
-  const glow = document.createElement('div');
-  glow.className = 'cursor-glow';
-  document.body.appendChild(glow);
-  document.addEventListener('mousemove', e => {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top  = e.clientY + 'px';
-  });
-}
+
 
 /* ─── SCROLL PROGRESS BAR ─────────────────── */
 function initScrollProgress() {
@@ -568,7 +558,6 @@ function buildBlogSection() {
 
 /* ─── MAIN INIT ───────────────────────────── */
 initLoader();
-initCursor();
 
 document.addEventListener('DOMContentLoaded', () => {
   initScrollProgress();
