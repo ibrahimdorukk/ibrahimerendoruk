@@ -71,8 +71,6 @@ const translations = {
     // Contact / Footer
     contactTitle: 'İletişime Geç', contactText: 'Benimle proje, tasarım veya üretim çalışmaları için iletişime geçebilirsiniz.',
     mailButton: 'Mail Gönder', footerText: '© 2026 İbrahim Eren Doruk. Tüm hakları saklıdır.',
-    // Visitor bar
-    visitorLive: 'Canlı ziyaretçi:', visitorTotal: 'Toplam görüntülenme:', visitorUnique: 'Tekil ziyaretçi:',
     // Page title & meta
     pageTitle: 'İbrahim Eren Doruk | Makine Mühendisi Portfolyosu',
     metaDesc: 'İbrahim Eren Doruk - Makine Mühendisi. CAD/CAM tasarımı, CNC işleme, sac metal tasarımı, 3D baskı, kalite kontrol ve üretim teknolojileri üzerine profesyonel portfolyo sitesi.',
@@ -132,9 +130,7 @@ const translations = {
     blogDesc: 'Notes on engineering experience, learnings, and industry insights.',
     blogReadMore: 'Read more →',
     contactTitle: 'Get in Touch', contactText: 'Feel free to contact me for project, design, or manufacturing work.',
-    mailButton: 'Send Email', footerText: '© 2026 İbrahim Eren Doruk. All rights reserved.',
-    visitorLive: 'Live visitors:', visitorTotal: 'Total views:', visitorUnique: 'Unique visitors:',
-    pageTitle: 'İbrahim Eren Doruk | Mechanical Engineer Portfolio',
+    mailButton: 'Send Email', footerText: '© 2026 İbrahim Eren Doruk. All rights reserved.',    pageTitle: 'İbrahim Eren Doruk | Mechanical Engineer Portfolio',
     metaDesc: 'İbrahim Eren Doruk - Mechanical Engineer. Professional portfolio in CAD/CAM design, CNC machining, sheet metal, 3D printing, and quality control.',
     htmlLang: 'en',
   },
@@ -192,9 +188,7 @@ const translations = {
     blogDesc: 'Notizen zu Ingenieurserfahrungen, Lernerkenntnissen und Brancheneinblicken.',
     blogReadMore: 'Weiterlesen →',
     contactTitle: 'Kontakt aufnehmen', contactText: 'Sie können mich für Projekt-, Design- oder Fertigungsarbeiten kontaktieren.',
-    mailButton: 'E-Mail senden', footerText: '© 2026 İbrahim Eren Doruk. Alle Rechte vorbehalten.',
-    visitorLive: 'Live-Besucher:', visitorTotal: 'Seitenaufrufe:', visitorUnique: 'Einzelbesucher:',
-    pageTitle: 'İbrahim Eren Doruk | Maschinenbauingenieur Portfolio',
+    mailButton: 'E-Mail senden', footerText: '© 2026 İbrahim Eren Doruk. Alle Rechte vorbehalten.',    pageTitle: 'İbrahim Eren Doruk | Maschinenbauingenieur Portfolio',
     metaDesc: 'İbrahim Eren Doruk - Maschinenbauingenieur. Professionelles Portfolio in CAD/CAM-Design, CNC-Bearbeitung, Blechkonstruktion, 3D-Druck und Qualitätskontrolle.',
     htmlLang: 'de',
   }
@@ -240,14 +234,6 @@ function applyLang(lang) {
   document.querySelectorAll('.blog-read-more').forEach(el => {
     el.textContent = t.blogReadMore || 'Read more →';
   });
-
-  // 7. Visitor bar labels
-  const vLive  = document.querySelector('[data-visitor="live"]');
-  const vTotal = document.querySelector('[data-visitor="total"]');
-  const vUniq  = document.querySelector('[data-visitor="unique"]');
-  if (vLive)  vLive.childNodes[0].textContent  = t.visitorLive  + ' ';
-  if (vTotal) vTotal.childNodes[0].textContent = t.visitorTotal + ' ';
-  if (vUniq)  vUniq.childNodes[0].textContent  = t.visitorUnique + ' ';
 
   // 8. CV link — dile göre doğru PDF'e yönlendir
   const cvLink = document.querySelector('a[href*="_Cv"], a[href*="_CV"], a[href*="cv.pdf"], a[href*="CV.pdf"]');
@@ -474,31 +460,6 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-/* ─── VISITOR COUNTER ─────────────────────── */
-function buildVisitorBar() {
-  let visits = parseInt(localStorage.getItem('ied_visits') || '0') + 1;
-  localStorage.setItem('ied_visits', visits);
-  const totalViews    = 1247 + visits * 3;
-  const totalVisitors = 834  + visits;
-  const t = translations[currentLang];
-
-  const bar = document.createElement('div');
-  bar.className = 'visitor-bar';
-  bar.innerHTML = `
-    <div class="visitor-stat" data-visitor="live">
-      <span class="visitor-dot"></span>
-      <span>${t.visitorLive} <strong>1</strong></span>
-    </div>
-    <div class="visitor-stat" data-visitor="total">
-      <span>${t.visitorTotal} <strong>${totalViews.toLocaleString()}</strong></span>
-    </div>
-    <div class="visitor-stat" data-visitor="unique">
-      <span>${t.visitorUnique} <strong>${totalVisitors.toLocaleString()}</strong></span>
-    </div>`;
-
-  const hero = document.querySelector('.hero');
-  if (hero) hero.after(bar);
-}
 
 /* ─── BLOG SECTION ────────────────────────── */
 const blogPosts = [
@@ -575,7 +536,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   buildFilterBar();
   buildModal();
-  buildVisitorBar();
   buildBlogSection();
   initReveal();
   initLang();       // must be last — re-applies lang over all dynamic elements
