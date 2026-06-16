@@ -212,43 +212,6 @@
   width: 100%;
 }
 
-/* ─── VISITOR COUNTER ─────────────────────── */
-.visitor-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  padding: 18px 40px;
-  background: rgba(255,255,255,0.04);
-  border-top: 1px solid rgba(255,255,255,0.07);
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  flex-wrap: wrap;
-}
-
-.visitor-stat {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #6b7280;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.visitor-stat strong {
-  color: #e5e7eb;
-  font-size: 15px;
-}
-
-.visitor-dot {
-  width: 7px;
-  height: 7px;
-  background: #22c55e;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
   50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(34,197,94,0); }
 }
 
@@ -354,10 +317,7 @@
     grid-template-columns: 1fr;
   }
 
-  .visitor-bar {
-    gap: 16px;
-    padding: 16px 22px;
-  }
+  
 
   .modal img {
     height: 220px;
