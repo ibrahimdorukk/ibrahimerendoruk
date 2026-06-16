@@ -249,7 +249,18 @@ function applyLang(lang) {
   if (vTotal) vTotal.childNodes[0].textContent = t.visitorTotal + ' ';
   if (vUniq)  vUniq.childNodes[0].textContent  = t.visitorUnique + ' ';
 
-  // 8. Active button highlight
+  // 8. CV link — dile göre doğru PDF'e yönlendir
+  const cvLink = document.querySelector('a[href*="_Cv"], a[href*="_CV"], a[href*="cv.pdf"], a[href*="CV.pdf"]');
+  if (cvLink) {
+    const cvFiles = {
+      tr: 'Ibrahim_Eren_Doruk_Cv.pdf',
+      en: 'Ibrahim_Eren_Doruk_Cv_EN.pdf',
+      de: 'Ibrahim_Eren_Doruk_Cv_DE.pdf',
+    };
+    cvLink.href = cvFiles[lang] || cvFiles.tr;
+  }
+
+  // 9. Active button highlight
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
