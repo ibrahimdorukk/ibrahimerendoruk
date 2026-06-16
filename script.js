@@ -230,9 +230,34 @@ function applyLang(lang) {
     if (t[key]) btn.textContent = t[key];
   });
 
-  // 6. Blog "read more" links
-  document.querySelectorAll('.blog-read-more').forEach(el => {
-    el.textContent = t.blogReadMore || 'Read more →';
+  // 6. Blog kartlarını dile göre yeniden render et
+  document.querySelectorAll('[data-blog-index]').forEach(el => {
+    const idx = parseInt(el.dataset.blogIndex);
+    const p = blogPosts[idx];
+    if (!p) return;
+    const dateEl  = el.querySelector('.blog-date');
+    const titleEl = el.querySelector('h3');
+    const descEl  = el.querySelector('p');
+    const moreEl  = el.querySelector('.blog-read-more');
+    if (dateEl)  dateEl.textContent  = p.date[lang]  || p.date.tr;
+    if (titleEl) titleEl.textContent = p.title[lang] || p.title.tr;
+    if (descEl)  descEl.textContent  = p.desc[lang]  || p.desc.tr;
+    if (moreEl && p.content) moreEl.textContent = t.blogReadMore || 'Devamını oku →';
+  });
+
+  // Blog "Yakında" kartları da güncelle (content null olanlar)
+  document.querySelectorAll('.blog-card:not([data-blog-index])').forEach((el, i) => {
+    // content null olan kartlar data-blog-index almıyor, index offset ile bul
+    const nullPosts = blogPosts.map((p, idx) => (!p.content ? idx : null)).filter(v => v !== null);
+    const idx = nullPosts[i];
+    if (idx === undefined) return;
+    const p = blogPosts[idx];
+    const dateEl  = el.querySelector('.blog-date');
+    const titleEl = el.querySelector('h3');
+    const descEl  = el.querySelector('p');
+    if (dateEl)  dateEl.textContent  = p.date[lang]  || p.date.tr;
+    if (titleEl) titleEl.textContent = p.title[lang] || p.title.tr;
+    if (descEl)  descEl.textContent  = p.desc[lang]  || p.desc.tr;
   });
 
   // 8. CV link — dile göre doğru PDF'e yönlendir
