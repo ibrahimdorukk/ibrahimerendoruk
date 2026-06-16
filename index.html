@@ -22,10 +22,98 @@
   <meta name="twitter:image" content="https://ibrahimerendoruk.vercel.app/images/profil.jpg" />
 
   <link rel="canonical" href="https://ibrahimerendoruk.vercel.app/" />
+
+  <!-- Hreflang: çok dilli SEO sinyali -->
+  <link rel="alternate" hreflang="tr" href="https://ibrahimerendoruk.vercel.app/" />
+  <link rel="alternate" hreflang="en" href="https://ibrahimerendoruk.vercel.app/" />
+  <link rel="alternate" hreflang="de" href="https://ibrahimerendoruk.vercel.app/" />
+  <link rel="alternate" hreflang="x-default" href="https://ibrahimerendoruk.vercel.app/" />
+
+  <!-- Schema.org: Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ibrahim Eren Doruk",
+    "url": "https://ibrahimerendoruk.vercel.app/",
+    "image": "https://ibrahimerendoruk.vercel.app/images/profil.jpg",
+    "jobTitle": "Mechanical Engineer",
+    "description": "Mechanical Engineering graduate specializing in CAD/CAM design, CNC machining, sheet metal design, 3D printing, and quality control.",
+    "email": "ibrahimerendoruk0@gmail.com",
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Eskisehir Osmangazi University",
+      "url": "https://www.ogu.edu.tr/"
+    },
+    "knowsAbout": [
+      "CAD/CAM Design","SolidWorks","Siemens NX","Autodesk Fusion 360",
+      "CNC Machining","Sheet Metal Design","3D Printing",
+      "Quality Control","Tolerance Analysis","Production Engineering"
+    ],
+    "sameAs": ["https://www.linkedin.com/in/ibrahimerendoruk/"]
+  }
+  </script>
+
+  <!-- Schema.org: ProfilePage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "name": "Ibrahim Eren Doruk | Mechanical Engineer Portfolio",
+    "url": "https://ibrahimerendoruk.vercel.app/",
+    "description": "Professional engineering portfolio featuring CAD/CAM projects, research, and manufacturing services.",
+    "mainEntity": { "@type": "Person", "name": "Ibrahim Eren Doruk" },
+    "inLanguage": ["tr","en","de"]
+  }
+  </script>
+
+  <!-- Schema.org: ItemList — Projeler -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Engineering Projects — Ibrahim Eren Doruk",
+    "url": "https://ibrahimerendoruk.vercel.app/#projeler",
+    "numberOfItems": 6,
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Sheet Metal Enclosure Design","description":"Sheet metal enclosure design using SolidWorks with production-ready bending logic."},
+      {"@type":"ListItem","position":2,"name":"3D Printed Prototype","description":"Functional prototype designed in Fusion 360 and produced via FDM 3D printing."},
+      {"@type":"ListItem","position":3,"name":"Machine Part Design","description":"Engineering part modeled in Siemens NX to ISO 2768 tolerance standards."},
+      {"@type":"ListItem","position":4,"name":"Industrial Product Render","description":"Photorealistic product visualization rendered in Keyshot for catalog use."},
+      {"@type":"ListItem","position":5,"name":"Assembly Design","description":"12-part assembly with kinematic analysis and exploded view drawing."},
+      {"@type":"ListItem","position":6,"name":"Production-Ready Design","description":"CAD-CAM design with 3-axis tool paths in Siemens NX Manufacturing."}
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Home",        "item":"https://ibrahimerendoruk.vercel.app/"},
+      {"@type":"ListItem","position":2,"name":"Projects",    "item":"https://ibrahimerendoruk.vercel.app/#projeler"},
+      {"@type":"ListItem","position":3,"name":"Resume",      "item":"https://ibrahimerendoruk.vercel.app/#ozgecmis"},
+      {"@type":"ListItem","position":4,"name":"Contact",     "item":"https://ibrahimerendoruk.vercel.app/#iletisim"}
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style_additions.css" />
 </head>
 
 <body>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+  <div class="loader-logo">İbrahim Eren Doruk</div>
+  <div class="loader-bar-wrap">
+    <div class="loader-bar"></div>
+  </div>
+  <span class="loader-sub">MECHANICAL ENGINEER</span>
+</div>
 
 <header class="navbar">
   <div class="brand">
