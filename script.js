@@ -230,35 +230,22 @@ function applyLang(lang) {
     if (t[key]) btn.textContent = t[key];
   });
 
-  // 6. Blog kartlarını dile göre yeniden render et
-  document.querySelectorAll('[data-blog-index]').forEach(el => {
-    const idx = parseInt(el.dataset.blogIndex);
-    const p = blogPosts[idx];
-    if (!p) return;
-    const dateEl  = el.querySelector('.blog-date');
-    const titleEl = el.querySelector('h3');
-    const descEl  = el.querySelector('p');
-    const moreEl  = el.querySelector('.blog-read-more');
-    if (dateEl)  dateEl.textContent  = p.date[lang]  || p.date.tr;
-    if (titleEl) titleEl.textContent = p.title[lang] || p.title.tr;
-    if (descEl)  descEl.textContent  = p.desc[lang]  || p.desc.tr;
-    if (moreEl && p.content) moreEl.textContent = t.blogReadMore || 'Devamını oku →';
-  });
-
-  // Blog "Yakında" kartları da güncelle (content null olanlar)
-  document.querySelectorAll('.blog-card:not([data-blog-index])').forEach((el, i) => {
-    // content null olan kartlar data-blog-index almıyor, index offset ile bul
-    const nullPosts = blogPosts.map((p, idx) => (!p.content ? idx : null)).filter(v => v !== null);
-    const idx = nullPosts[i];
-    if (idx === undefined) return;
-    const p = blogPosts[idx];
-    const dateEl  = el.querySelector('.blog-date');
-    const titleEl = el.querySelector('h3');
-    const descEl  = el.querySelector('p');
-    if (dateEl)  dateEl.textContent  = p.date[lang]  || p.date.tr;
-    if (titleEl) titleEl.textContent = p.title[lang] || p.title.tr;
-    if (descEl)  descEl.textContent  = p.desc[lang]  || p.desc.tr;
-  });
+  // 6. Blog grid'ini tamamen yeniden render et (dil değişimi)
+  const blogGrid = document.querySelector('.blog-grid');
+  if (blogGrid) {
+    blogGrid.innerHTML = blogPosts.map((p, i) => `
+      <div class="blog-card" ${p.content ? `data-blog-index="${i}" style="cursor:pointer"` : ''}>
+        <div class="blog-card-header">
+          <span class="blog-date">${p.date[lang] || p.date.tr}</span>
+          <span class="blog-tag">${p.tag}</span>
+          <h3>${p.title[lang] || p.title.tr}</h3>
+        </div>
+        <p>${p.desc[lang] || p.desc.tr}</p>
+        ${p.content
+          ? `<span class="blog-read-more">${t.blogReadMore}</span>`
+          : `<span class="blog-read-more" style="opacity:0.25">Yakında →</span>`}
+      </div>`).join('');
+  }
 
   // 8. CV link — dile göre doğru PDF'e yönlendir
   const cvLink = document.querySelector('a[href*="_Cv"], a[href*="_CV"], a[href*="cv.pdf"], a[href*="CV.pdf"]');
